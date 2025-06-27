@@ -5,29 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arone AI</title>
     <link rel="stylesheet" href="style.css">
-    <!-- In your HTML head -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="main">
+    <section class="bg">
+        <section class="main">
         <h2>Arone AI</h2>
         <h4>Ask for any assistance</h4>
-        <div class="all-elms">
-            <div class="response-section">
-                <div class="response-container" id="response-container">
-                    <!-- AI RESPONSE WALA PA LAMAN DI KO NA ALAM -->
+            <div class="all-elms">
+                <div class="response-section">
+                    <div class="response-container" id="response-container">
+              
+                    </div>
+                </div>
+                <div class="send-row">
+                    <textarea class="text-area" id="text-area" placeholder="Ask anything here!" maxlength="1200"></textarea>
+                    <button id="mic-btn" class="btn mic"><i class="fas fa-microphone"></i></button>
+                    <button id="ask-btn" class="btn ask"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
-            <div class="send-row">
-                <textarea class="text-area" id="text-area" placeholder="Ask anything!"></textarea>
-                <button id="mic-btn" class="btn mic"><i class="fas fa-microphone"></i></button>
-                <button id="ask-btn" class="btn ask"><i class="fas fa-paper-plane"></i></button>
+        </section>
+
+        <section class="card-container">
+            <div class="header">
+                <h1>Choose Your Plan</h1>
+                <p>Select the perfect pricing plan for your needs</p>
             </div>
-        </div>
-    </div>
+            <div class="pricing-cards">
+                <!-- ============= BASIC PLAN ============== -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div>
+                        <h3>Basic</h3>
+                        <div class="price">
+                            <span class="currency">₱</span>
+                            <span class="amount">49</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="description">Perfect for individuals and small projects</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Limited Tokens per hour</li>
+                            <li><i class="fas fa-check"></i> Voice Input Support</li>
+                            <li><i class="fas fa-check"></i> Fast Response Speed</li>
+                            <li><i class="fas fa-check"></i> Download response as PDF</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Image Processing</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Real-Time Web Access</li>
+                        </ul>
+                    </div> 
+                    <div class="card-footer">
+                        <button class="plan-btn accent">Get Started</button>
+                    </div>
+                </div>
+                <!-- ============= PRO PLAN ============== -->
+                <div class="card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fa fa-gem"></i>
+                        </div>
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">₱</span>
+                            <span class="amount">249</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="description">Best for growing business and teams</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Limited Tokens per hour</li>
+                            <li><i class="fas fa-check"></i> Voice Input Support</li>
+                            <li><i class="fas fa-check"></i> Fast Response Speed</li>
+                            <li><i class="fas fa-check"></i> Download response as PDF</li>
+                            <li><i class="fas fa-check"></i> Image Processing</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Real-Time Web Access</li>
+                        </ul>
+                    </div> 
+                    <div class="card-footer">
+                        <button class="plan-btn accent">Get Started</button>
+                    </div>
+                </div>
+                <!-- ============ ENTERPRISE PLAN =============== -->
+                <div class="card popular">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fa fa-building"></i>
+                        </div>
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">₱</span>
+                            <span class="amount">499</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="description">For large companies and organizations in industries</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> Limited Tokens per hour</li>
+                            <li><i class="fas fa-check"></i> Voice Input Support</li>
+                            <li><i class="fas fa-check"></i> Fast Response Speed</li>
+                            <li><i class="fas fa-check"></i> Download response as PDF</li>
+                            <li><i class="fas fa-check"></i> Image Processing</li>
+                            <li><i class="fas fa-check"></i> Real-Time Web Access</li>
+                        </ul>
+                    </div> 
+                    <div class="card-footer">
+                        <button class="plan-btn accent">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+    </section>
 <script src="script.js"></script>
+<script src="voice-recog.js"></script>
 </body>
 </html>

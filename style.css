@@ -10,6 +10,13 @@ body {
     height: 100vh;
 }
 
+.bg {
+    opacity: 1;
+    background: linear-gradient(-45deg, #ffd3f4, #b9e7fa);
+    background-size: 400% 400%;
+    animation: animate 8s ease infinite;
+}
+
 .main {
     width: 100%;
     min-height: 100vh;
@@ -17,7 +24,25 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(100deg, #ffd3f4, #b9e7fa);
+
+    background-size: 400% 400%;
+    animation: fadeIn .7s ease-out forwards;
+
+    opacity: 0;
+    transform: translateY(50px); 
+}
+
+@keyframes animate {
+    0%   { background-position: 0 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 50% 0%; }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 textarea {
@@ -51,18 +76,21 @@ textarea:focus {
 
 h2 {
     font-size: 65px;
+    margin-bottom: 0;
+    padding-bottom:0;
 }
 
 h4 {
     font-size: 15px;
     font-weight: 500;
-    margin-bottom: 2px;
+    padding-top: 0;
+    margin-bottom: 15px;
 }
 
 .all-elms {
     width: 90%;
-    max-width: 700px;
-    height: 550px;
+    max-width: 900px;
+    height: 700px;
     border: 1px solid transparent;
     margin-top: 15px;
     display: flex;
@@ -70,7 +98,6 @@ h4 {
     justify-content: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15), 5px 5px 15px rgba(0, 0, 0, 0.15);
-
 }
 
 .send-row {
@@ -92,7 +119,7 @@ button {
     justify-content: center;
     border: 1px solid transparent;
     border-radius: 100%;
-    background-color: rgb(255, 112, 243);
+    background-color: rgb(255, 180, 249);
     font-size: 15px;
     margin-left: 5px;
     transition: .5s ease;
@@ -103,12 +130,16 @@ button {
     padding: 11px 13px;
 }
 
+.btn.mic:focus {
+    background-color: rgb(255, 180, 249);
+}
+
 .btn.ask {
     padding: 11px 11px;
 }
 
 button:hover {
-    background-color: rgb(245, 158, 238);
+    background-color: rgb(247, 214, 244);
 }
 
 .response-section {
@@ -154,17 +185,186 @@ button:hover {
 
 
 .response {
-    background-color: #f1f1f1;
+    background: linear-gradient(to right, #fff7fc, #eef7ff);
     border-radius: 8px;
     padding: 10px;
+    margin-bottom: 25px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     color: #333;
-    max-width: 100%;
+    max-width: 90%;
     width: fit-content;
     word-wrap: break-word;
+    align-self: flex-start;
 }
 
 .response:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+}
+
+.custom-menu {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    z-index: 9999;
+    display: none;
+    cursor: pointer;
+}
+
+.custom-menu div {
+    padding: 8px 12px;
+}
+
+.custom-menu div:hover {
+  background-color: #f0f0f0;
+}
+
+.chat-bubble {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 80%;
+    width: fit-content;
+    word-wrap: break-word;
+    align-self: flex-end;
+}
+
+/* ========================== CARDS ============================= */
+
+
+:root {
+    --primary-light: #fff;
+    --primary-dark: black;
+    --primary-text: 
+}
+
+.card-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 150px auto 0;
+    height: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #252525, #707070);
+    display: inline-block;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.header p {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15), 5px 5px 15px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2.5), 5px 5px 15px rgba(0, 0, 0, 0.2.5);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.card-header {
+    padding: 30px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.plan-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(255, 55, 205, 0.25), rgba(94, 207, 255, 0.55));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    /* #ffd3f4, #b9e7fa */
+}
+
+.plan-icon i {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.price {
+    margin-bottom: 15px;
+}
+
+.currency {
+    font-size: 1.5rem;
+    margin-right: 2px;
+    color: rgba(0, 0, 0, 0.945);
+    vertical-align: top;
+    transition: transform 0.6s ease;
+    display: inline-block;
+}
+
+.card:hover .currency {
+    transform: rotateY(360deg);
+}
+
+.amount {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: #333;
+}
+
+.description {
+    font: 0.95rem;
+    color: #333;
+}
+
+.card-body {
+    margin-top: 15px;
+}
+
+ul li {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.plan-btn.accent{
+    margin: 30px auto;
 }
