@@ -4,13 +4,13 @@
 
 ## 🔍 Features
 
-- 💬 Chat interface for AI prompts and responses
-- 🎤 Voice input using microphone
-- 💾 Local conversation history using `localStorage`
-- 📄 Download AI responses as PDF
-- 📋 Copy messages from the chat
-- 🎨 Animated UI with responsive design
-- 🌤 Predefined prompt suggestions
+-  Chat interface for AI prompts and responses
+-  Voice input using microphone
+-  Local conversation history using `localStorage`
+-  Download AI responses as PDF
+-  Copy messages from the chat
+-  Animated UI with responsive design
+-  Predefined prompt suggestions
 
 ## 🧠 Powered by
 
