@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$apiKey = "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";
+$apiKey = ""; // YOUR API KEY
 $input = json_decode(file_get_contents("php://input"), true);
 
 if (isset($input["prompt"])) {

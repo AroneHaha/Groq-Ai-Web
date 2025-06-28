@@ -31,43 +31,56 @@ function botResponse(text) {
     messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
+async function handleAIRequest(message) {
+    userPrompt(message);
+    document.querySelector('.suggestions').style.display = 'none';
+    try {
+        const conversationHistory = loadConversationHistory();
+        conversationHistory.push({ role: "user", content: message });
+        saveConversationHistory(conversationHistory);
+
+        const res = await fetch("api-config.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt: message,
+                history: conversationHistory,
+            }),
+        });
+
+        const data = await res.json();
+
+        if (
+            data &&
+            data.choices &&
+            data.choices[0] &&
+            data.choices[0].message &&
+            data.choices[0].message.content
+        ) {
+            botResponse(data.choices[0].message.content);
+            conversationHistory.push({
+                role: "assistant",
+                content: data.choices[0].message.content,
+            });
+            saveConversationHistory(conversationHistory);
+        } else {
+            botResponse("Error: Invalid response from API");
+        }
+    } catch (err) {
+        botResponse("Error: " + err.message);
+    }
+}
+
 /* =================== SENDING PROMPT THRU 'ENTER' ======================== */
 promptTxt.addEventListener('keydown', async (e) => {
     const message = promptTxt.value.trim();
     if (e.key === 'Enter' && !e.shiftKey && promptTxt.value.trim() !== '') {
-        userPrompt(message); //MESSAGE ANG REAL VAR
-        botResponse("test")
         e.preventDefault();
         promptTxt.value = '';
+        handleAIRequest(message)
     }
-
-    //     try {
-    //         /*  Saves user and ai response to local storage using the array earlier  */
-    //         const conversationHistory = loadConversationHistory();
-    //         conversationHistory.push({ role: 'user', content: message });
-    //         saveConversationHistory(conversationHistory);
-
-    //         const res = await fetch("api-config.php", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify({ prompt: message, history: conversationHistory })
-    //         });
-
-    //         const data = await res.json();
-    //         if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-    //             botResponse(data.choices[0].message.content);
-    //             conversationHistory.push({ role: 'assistant', content: data.choices[0].message.content });
-    //             saveConversationHistory(conversationHistory);
-    //         } else {
-    //             botResponse("Error: Invalid response from API");
-    //         }
-
-    //     } catch (err) {
-    //         botResponse("Error: " + err.message);
-    //     }
-    // }
 });
 
 promptTxt.addEventListener('keydown', (e) => {
@@ -80,31 +93,9 @@ promptTxt.addEventListener('keydown', (e) => {
 askBtn.addEventListener('click', async () => {
     const message = promptTxt.value.trim();
     if (message !== '') {
-        userPrompt(message);
+        e.preventDefault();
         promptTxt.value = '';
-        try {
-            const conversationHistory = loadConversationHistory();
-            conversationHistory.push({ role: 'user', content: message });
-            saveConversationHistory(conversationHistory);
-
-            const res = await fetch("api-config.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ prompt: message, history: conversationHistory })
-            });
-            const data = await res.json();
-            if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-                botResponse(data.choices[0].message.content);
-                conversationHistory.push({ role: 'assistant', content: data.choices[0].message.content });
-                saveConversationHistory(conversationHistory);
-            } else {
-                botResponse("Error: Invalid response from API");
-            }
-        } catch (err) {
-            botResponse("Error: " + err.message);
-        }
+        handleAIRequest(message)
     }
 });
  
@@ -165,3 +156,4 @@ document.addEventListener('click', () => {
     const menu = document.querySelector('.custom-menu');
     if (menu) menu.remove();
 });
+
